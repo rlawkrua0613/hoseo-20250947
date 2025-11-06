@@ -122,7 +122,7 @@ void menu3(int* id, ITEMS s[]) {
             printf("상품id: %d\n", s[*id - 1].id);
             printf("상품명: %s\n", s[*id - 1].name);
             printf("가격: %d\n", s[*id - 1].price);
-            printf("제고량: %d\n", s[*id - 1].item - s[*id - 1].sale);
+            printf("재재고량: %d\n", s[*id - 1].item - s[*id - 1].sale);
             printf("판매량: %d\n", s[*id - 1].sale);
             printf("총판매금액: %d\n", s[*id - 1].sale * s[*id - 1].price);
             break;
@@ -245,3 +245,4 @@ int main() {
     return 0;
 
 }
+
