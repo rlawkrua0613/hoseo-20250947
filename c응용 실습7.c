@@ -11,9 +11,9 @@ typedef struct ITEMS {
 }ITEMS;
 
 void stock(int* count, ITEMS s[]) {
-    printf("»óÇ°º° Àç°í¼ö·®: ");
+    printf("ìƒí’ˆë³„ ì¬ê³ ìˆ˜ëŸ‰: ");
     for (int i = 0; i < *count; i++) {
-        printf("id%d:%d°³ ", s[i].id, s[i].item - s[i].sale);
+        printf("id%d:%dê°œ ", s[i].id, s[i].item - s[i].sale);
     }
 }
 
@@ -25,11 +25,11 @@ void total_sale(int* count, ITEMS s[]) {
         item_sum += s[i].item;
     }
     if (item_sum == 0) {
-        printf("ÃÑ ÆÇ¸Å·®: 0 (ÆÇ¸ÅÀ²: 0%%)");
+        printf("ì´ íŒë§¤ëŸ‰: 0 (íŒë§¤ìœ¨: 0%%)");
         return;
     }
     float rate = ((float)sale_sum / item_sum) * 100;
-    printf("ÃÑ ÆÇ¸Å·®: %d (ÆÇ¸ÅÀ²: %.2f%%)", sale_sum, rate);
+    printf("ì´ íŒë§¤ëŸ‰: %d (íŒë§¤ìœ¨: %.2f%%)", sale_sum, rate);
 }
 
 void sale_max(int* count, ITEMS s[]) {
@@ -40,13 +40,13 @@ void sale_max(int* count, ITEMS s[]) {
             max = s[i].sale;
         }
     }
-    printf("°¡Àå ¸¹ÀÌ ÆÈ¸° »óÇ°: ");
+    printf("ê°€ì¥ ë§ì´ íŒ”ë¦° ìƒí’ˆ: ");
     for (int i = 0; i < *count; i++) {
         if (s[i].sale == max) {
-            printf("<id:%d »óÇ°¸í:%s> ", s[i].id, s[i].name);
+            printf("<id:%d ìƒí’ˆëª…:%s> ", s[i].id, s[i].name);
         }
     }
-    printf("[ÆÇ¸Å·®: %d]", max);
+    printf("[íŒë§¤ëŸ‰: %d]", max);
 }
 
 void sale_min(int* count, ITEMS s[]) {
@@ -57,19 +57,19 @@ void sale_min(int* count, ITEMS s[]) {
             min = s[i].sale;
         }
     }
-    printf("°¡Àå Àû°Ô ÆÈ¸° »óÇ°: ");
+    printf("ê°€ì¥ ì ê²Œ íŒ”ë¦° ìƒí’ˆ: ");
     for (int i = 0; i < *count; i++) {
         if (s[i].sale == min) {
-            printf("<id:%d »óÇ°¸í:%s> ", s[i].id, s[i].name);
+            printf("<id:%d ìƒí’ˆëª…:%s> ", s[i].id, s[i].name);
         }
     }
-    printf("[ÆÇ¸Å·®: %d]", min);
+    printf("[íŒë§¤ëŸ‰: %d]", min);
 }
 
 void stock_warning(int* count, ITEMS s[]) {
     for (int i = 0; i < *count; i++) {
         if (s[i].item - s[i].sale < 3 && s[i].item != 0) {
-            printf("»óÇ°id %d, »óÇ°¸í: %s Àç°íºÎÁ·(%d)\n", s[i].id, s[i].name, s[i].item - s[i].sale);
+            printf("ìƒí’ˆid %d, ìƒí’ˆëª…: %s ì¬ê³ ë¶€ì¡±(%d)\n", s[i].id, s[i].name, s[i].item - s[i].sale);
         }
     }
 
@@ -81,7 +81,7 @@ void menu1(ITEMS **s, int *count, int *n) {
         *n *= 2;
         ITEMS* temp = realloc(*s, sizeof(ITEMS) * (*n));
         if (temp == NULL) {
-            printf("¸Ş¸ğ¸® ÀçÇÒ´ç ½ÇÆĞ\n");
+            printf("ë©”ëª¨ë¦¬ ì¬í• ë‹¹ ì‹¤íŒ¨\n");
             return;
         }
         *s = temp;
@@ -90,13 +90,13 @@ void menu1(ITEMS **s, int *count, int *n) {
     ITEMS* sc = &(*s)[*count];
     sc->id = *count + 1;
 
-    printf("»óÇ°¸í: ");
+    printf("ìƒí’ˆëª…: ");
     scanf("%s", sc->name);
 
-    printf("»óÇ° ÀÔ°í·®: ");
+    printf("ìƒí’ˆ ì…ê³ ëŸ‰: ");
     scanf("%d", &sc->item);
 
-    printf("»óÇ° °¡°İ: ");
+    printf("ìƒí’ˆ ê°€ê²©: ");
     scanf("%d", &sc->price);
 
     sc->sale = 0;
@@ -106,43 +106,43 @@ void menu1(ITEMS **s, int *count, int *n) {
 
 void menu2(ITEMS s[], int count) {
     int id;
-    printf("»óÇ° id: ");
+    printf("ìƒí’ˆ id: ");
     scanf("%d", &id);
     
     if (id < 1 || id > count) {
-      printf("Á¸ÀçÇÏÁö ¾Ê´Â idÀÔ´Ï´Ù.\n");
+      printf("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” idì…ë‹ˆë‹¤.\n");
       return;
     }
         
-    printf("ÆÇ¸Å¼ö·®: ");
+    printf("íŒë§¤ìˆ˜ëŸ‰: ");
     scanf("%d", &s[id - 1].sale);
 }
 
 void menu3(int count, ITEMS s[]) {
     int id;
-    printf("»óÇ°id ÀÔ·Â: ");
+    printf("ìƒí’ˆid ì…ë ¥: ");
     scanf("%d", &id);
 
     if (id < 1 || id > count) {
-        printf("Á¸ÀçÇÏÁö ¾Ê´Â idÀÔ´Ï´Ù.\n");
+        printf("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” idì…ë‹ˆë‹¤.\n");
         return;
     }
 
     ITEMS S = s[id - 1];
 
-    printf("»óÇ°id: %d\n", S.id);
-    printf("»óÇ°¸í: %s\n", S.name);
-    printf("°¡°İ: %d\n", S.price);
-    printf("Àç°í·®: %d\n", S.item - S.sale);
-    printf("ÆÇ¸Å·®: %d\n", S.sale);
-    printf("ÃÑÆÇ¸Å±İ¾×: %d\n", S.sale * S.price);
+    printf("ìƒí’ˆid: %d\n", S.id);
+    printf("ìƒí’ˆëª…: %s\n", S.name);
+    printf("ê°€ê²©: %d\n", S.price);
+    printf("ì¬ê³ ëŸ‰: %d\n", S.item - S.sale);
+    printf("íŒë§¤ëŸ‰: %d\n", S.sale);
+    printf("ì´íŒë§¤ê¸ˆì•¡: %d\n", S.sale * S.price);
    
 }
 
 void save_items(int count, ITEMS s[]) {
     FILE* fp = fopen("items.txt", "w");
     if (fp == NULL) {
-        printf("ÆÄÀÏ ÀúÀå ½ÇÆĞ\n");
+        printf("íŒŒì¼ ì €ì¥ ì‹¤íŒ¨\n");
         return;
     }
 
@@ -153,14 +153,14 @@ void save_items(int count, ITEMS s[]) {
     }
 
     fclose(fp);
-    printf("»óÇ° Á¤º¸°¡ 'items.txt' ÆÄÀÏ¿¡ ÀúÀåµÇ¾ú½À´Ï´Ù.\n");
+    printf("ìƒí’ˆ ì •ë³´ê°€ 'items.txt' íŒŒì¼ì— ì €ì¥ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 }
 
 
 void load_items(ITEMS** s, int* count, int* n) {
     FILE* fp = fopen("items.txt", "r");
     if (fp == NULL) {
-        printf("ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾Ê°Å³ª ¿­ ¼ö ¾ø½À´Ï´Ù.\n");
+        printf("íŒŒì¼ì´ ì¡´ì¬í•˜ì§€ ì•Šê±°ë‚˜ ì—´ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n");
         return;
     }
 
@@ -169,7 +169,7 @@ void load_items(ITEMS** s, int* count, int* n) {
     *n = *count;
     ITEMS* temp = realloc(*s, sizeof(ITEMS) * (*n));
     if (temp == NULL) {
-        printf("¸Ş¸ğ¸® ÀçÇÒ´ç ½ÇÆĞ\n");
+        printf("ë©”ëª¨ë¦¬ ì¬í• ë‹¹ ì‹¤íŒ¨\n");
         fclose(fp);
         return;
     }
@@ -185,23 +185,22 @@ void load_items(ITEMS** s, int* count, int* n) {
     }
 
     fclose(fp);
-    printf("»óÇ° Á¤º¸¸¦ ÆÄÀÏ¿¡¼­ ºÒ·¯¿Ô½À´Ï´Ù.\n");
+    printf("ìƒí’ˆ ì •ë³´ë¥¼ íŒŒì¼ì—ì„œ ë¶ˆëŸ¬ì™”ìŠµë‹ˆë‹¤.\n");
 }
 
 int main() {
     int count = 0;
     int menu;
-    int id;
     int n = 5;
     ITEMS *s = NULL;
     s = (ITEMS*)malloc(sizeof(ITEMS) * n);
     if (s == NULL) {
-        printf("¸Ş¸ğ¸® ÇÒ´ç ½ÇÆĞ\n");
+        printf("ë©”ëª¨ë¦¬ í• ë‹¹ ì‹¤íŒ¨\n");
         return 1;
     }
 
     while (1) {
-        printf("¿øÇÏ´Â ¸Ş´º¸¦ ¼±ÅÃÇÏ¼¼¿ä.(1.ÀÔ°í 2.ÆÇ¸Å 3.°³º°ÇöÈ² 4.ÀüÃ¼ÇöÈ² 5.ÀúÀå 6.ºÒ·¯¿À±â 7.Á¾·á): ");
+        printf("ì›í•˜ëŠ” ë©”ë‰´ë¥¼ ì„ íƒí•˜ì„¸ìš”.(1.ì…ê³  2.íŒë§¤ 3.ê°œë³„í˜„í™© 4.ì „ì²´í˜„í™© 5.ì €ì¥ 6.ë¶ˆëŸ¬ì˜¤ê¸° 7.ì¢…ë£Œ): ");
         scanf("%d", &menu);
 
         if (menu == 1) {
@@ -250,15 +249,16 @@ int main() {
         }
         else if (menu == 7) {
             free(s);
-            printf("Á¾·áÇÕ´Ï´Ù.");
+            printf("ì¢…ë£Œí•©ë‹ˆë‹¤.");
             break;
         }
         else {
-            printf("¸Ş´º¸¦ ÀÔ·ÂÇÏ¼¼¿ä\n");
+            printf("ë©”ë‰´ë¥¼ ì…ë ¥í•˜ì„¸ìš”\n");
             continue;
         }
     }
 
     return 0;
+
 
 }
