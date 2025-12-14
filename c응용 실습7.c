@@ -90,7 +90,7 @@ void menu1(ITEMS **s, int *count, int *n) {
     ITEMS* sc = &(*s)[*count];
     sc->id = *count + 1;
 
-    printf("상품명: ");
+    printf("(id%d) 상품명: ", sc->id);
     scanf("%s", sc->name);
 
     printf("상품 입고량: ");
@@ -262,3 +262,4 @@ int main() {
 
 
 }
+
